@@ -1,0 +1,26 @@
+@baseUrl = https://8080-isabellymira-receitasp2-57znd3e9gg9.ws-us114.gitpod.io
+
+###
+GET {{baseUrl}}/quizzes
+
+###
+POST {{baseUrl}}/quizzes
+Content-Type: application/json
+
+{
+    "receita" : "Descrição da Receita",
+    "id" : 1,
+    "nome" : "Nome da Receita",
+    "instruções" : "Instruções de preparo da receita"
+}
+
+###
+PUT {{baseUrl}}/quizzes/1
+Content-Type: application/json
+
+{
+    "receita" : "Nova Descrição da Receita",
+    "id" : 1,
+    "nome" : "Novo Nome da Receita",
+    "instruções" : "Novas Instruções de preparo da receita"
+}

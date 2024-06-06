@@ -1,4 +1,4 @@
-POST https://8080-marcoweb-j2projetomodel-rya3pcfv47n.ws-us110.gitpod.io/questoes
+POST https://8080-isabellymira-receitasp2-57znd3e9gg9.ws-us114.gitpod.io/receitas
 Content-Type: application/json
 
 {
