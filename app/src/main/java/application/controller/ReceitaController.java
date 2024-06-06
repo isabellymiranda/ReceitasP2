@@ -14,43 +14,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import application.model.Categoria;
-import application.repository.CategoriaRepository;
+import application.model.Receita;
+import application.repository.ReceitaRepository;
 
 @RestController
-@RequestMapping("/categorias")
-public class CategoriaController {
+@RequestMapping("/receitas")
+public class ReceitaController {
     @Autowired
-    private CategoriaRepository categoriaRepo;
+    private ReceitaRepository receitaRepo;
 
     @GetMapping
-    public Iterable<Categoria> getAll() {
-        return categoriaRepo.findAll();
+    public Iterable<Receita> getAll() {
+        return receitaRepo.findAll();
     }
 
     @PostMapping
-    public Categoria post(@RequestBody Categoria categoria) {
-        return categoriaRepo.save(categoria);
+    public Receita post(@RequestBody Receita receita) {
+        return receitaRepo.save(receita);
     }
 
     @PutMapping("/{id}")
-    public Categoria put(@RequestBody Categoria categoria, @PathVariable long id) {
-        Optional<Categoria> result = categoriaRepo.findById(id);
+    public Receita put(@RequestBody Receita receita, @PathVariable long id) {
+        Optional<Receita> result = receitaRepo.findById(id);
         if(result.isEmpty()) {
             throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "Categoria Não Encontrada"
+                HttpStatus.NOT_FOUND, "Receita Não Encontrada"
             );
         }
-        return categoriaRepo.save(categoria);
+        return receitaRepo.save(receita);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
-        if(categoriaRepo.existsById(id)) {
-            categoriaRepo.deleteById(id);
+        if(receitaRepo.existsById(id)) {
+            receitaRepo.deleteById(id);
         } else {
             throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "Categoria Não Encontrada"
+                HttpStatus.NOT_FOUND, "Receita Não Encontrada"
             );
         }
     }

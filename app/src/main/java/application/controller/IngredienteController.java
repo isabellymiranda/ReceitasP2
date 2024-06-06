@@ -14,43 +14,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import application.model.Categoria;
-import application.repository.CategoriaRepository;
+import application.model.Ingrediente;
+import application.repository.IngredienteRepository;
 
 @RestController
-@RequestMapping("/categorias")
-public class CategoriaController {
+@RequestMapping("/ingredientes")
+public class IngredienteController {
     @Autowired
-    private CategoriaRepository categoriaRepo;
+    private IngredienteRepository ingredienteRepo;
 
     @GetMapping
-    public Iterable<Categoria> getAll() {
-        return categoriaRepo.findAll();
+    public Iterable<Ingrediente> getAll() {
+        return ingredienteRepo.findAll();
     }
 
     @PostMapping
-    public Categoria post(@RequestBody Categoria categoria) {
-        return categoriaRepo.save(categoria);
+    public Ingrediente post(@RequestBody Ingrediente ingrediente) {
+        return ingredienteRepo.save(ingrediente);
     }
 
     @PutMapping("/{id}")
-    public Categoria put(@RequestBody Categoria categoria, @PathVariable long id) {
-        Optional<Categoria> result = categoriaRepo.findById(id);
+    public Ingrediente put(@RequestBody Ingrediente ingrediente, @PathVariable long id) {
+        Optional<Ingrediente> result = ingredienteRepo.findById(id);
         if(result.isEmpty()) {
             throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "Categoria Não Encontrada"
+                HttpStatus.NOT_FOUND, "Ingrediente Não Encontrado"
             );
         }
-        return categoriaRepo.save(categoria);
+        return ingredienteRepo.save(ingrediente);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
-        if(categoriaRepo.existsById(id)) {
-            categoriaRepo.deleteById(id);
+        if(ingredienteRepo.existsById(id)) {
+            ingredienteRepo.deleteById(id);
         } else {
             throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "Categoria Não Encontrada"
+                HttpStatus.NOT_FOUND, "Ingrediente Não Encontrado"
             );
         }
     }
